@@ -42,6 +42,7 @@ const RegistrationScreen = () => {
   });
   const { assets, colors, gradients, sizes } = useTheme();
 
+  console.log(error)
   const handleChange = useCallback(
     (value) => {
       setRegistration((state) => ({ ...state, ...value }));
@@ -50,6 +51,7 @@ const RegistrationScreen = () => {
   );
 
   const handleSignUp = useCallback(async () => {
+    Linking.openURL('https://github.com/beaty-sas/mobile.git')
     try {
       await authorize();
     } catch (e) {
