@@ -97,7 +97,7 @@ const LoginScreen = () => {
               tint={colors.blurTint}
               paddingVertical={sizes.sm}>
               <Text p semibold center>
-                {t('register.subtitle')}
+                {t('login.subtitle')}
               </Text>
               {/* social buttons */}
               <Block row center justify="space-evenly" marginVertical={sizes.m}>
@@ -181,7 +181,7 @@ const LoginScreen = () => {
                 marginHorizontal={sizes.sm}
                 gradient={gradients.primary}
                 onPress={handleSignIn}
-                disabled={Object.values(isValid).includes(true)}
+                disabled={Object.values(isValid).includes(false)}
               >
                 <Text bold white transform="uppercase">
                   {t('common.signin')}

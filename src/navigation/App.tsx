@@ -5,6 +5,7 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useData, ThemeProvider } from '../hooks';
 import Menu from './Menu';
+import { Auth0Provider } from 'react-native-auth0';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -56,9 +57,14 @@ export default () => {
 
   return (
     <ThemeProvider theme={theme} setTheme={setTheme}>
-      <NavigationContainer theme={navigationTheme}>
-        <Menu />
-      </NavigationContainer>
+      <Auth0Provider
+        domain={"reserve-exp.eu.auth0.com"}
+        clientId={"WzCQ8wykXq0q9IHUEpgzNLH3xPxQNdA9"}
+      >
+        <NavigationContainer theme={navigationTheme}>
+          <Menu />
+        </NavigationContainer>
+      </Auth0Provider>
     </ThemeProvider>
   );
 };

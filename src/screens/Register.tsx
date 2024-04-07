@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Linking, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
+import { useAuth0, Auth0Provider } from 'react-native-auth0';
 
 import { useData, useTheme, useTranslation } from '../hooks/';
 import * as regex from '../constants/regex';
@@ -25,6 +26,8 @@ const RegistrationScreen = () => {
   const { isDark } = useData();
   const { t } = useTranslation();
   const navigation = useNavigation();
+  const { authorize, error } = useAuth0();
+
   const [isValid, setIsValid] = useState<IRegistrationValidation>({
     name: false,
     email: false,
@@ -46,10 +49,11 @@ const RegistrationScreen = () => {
     [setRegistration],
   );
 
-  const handleSignUp = useCallback(() => {
-    if (!Object.values(isValid).includes(false)) {
-      /** send/save registratin data */
-      console.log('handleSignUp', registration);
+  const handleSignUp = useCallback(async () => {
+    try {
+      await authorize();
+    } catch (e) {
+      console.log(e);
     }
   }, [isValid, registration]);
 
